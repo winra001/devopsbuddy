@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Starter Template for Bootstrap</title>
+	<title>DevOps Buddy</title>
 	
 	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+	<link th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" rel="stylesheet" media="screen"></link>
 	
 	<!-- Custom styles for this template -->
-	<style>
-		body {
-			padding-top: 50px;
-		}
-		.starter-template {
-			padding: 40px 15px;
-			text-align: center;
-		}
-	</style>
+	<link type="text/css" th:href="@{/css/styles.css}" rel="stylesheet" media="screen"></link>
 	
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- [if lt IE 9] >
@@ -51,5 +43,9 @@
 			<p class="lead">use this document as a way to quickly start any new project.<br></br> All you get is this text and a mostly barebones HTML document.</p>
 		</div>
 	</div>
+	
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
 </body>
 </html>
