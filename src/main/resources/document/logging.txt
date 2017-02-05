@@ -1,0 +1,28 @@
+* Log4j: This started it all. Still heavily used but a bit obsolete
+
+* Log4j2: Rearchitecture of Log4j. More performant, modular, auto-reload of configuration changes, JSON support
+
+* Logback: It natively speak Slf4j. faster than Log4j, automatic removal of old log files, conditional processing of configuration files (dev, prod), configuration is richer than log4j
+
+
+=====================
+Logging Levels
+=====================
+* TRACE: You want to know everything the application is doing -> High output volumes
+* DEBUG: Useful when debugging scenarios -> High output volumes
+* INFO: The application tells us the journey of a particular scenario
+* WARN: Something we should be paying attention to but that does not require an immediate fix
+* ERROR: An error within our application. We should fix it ASAP
+* FATAL: Urgent fix required
+
+
+=====================
+API vs Implementation
+=====================
+* The correct approach when setting up logging is to use a generic API which can work with different implementation
+
+* Slf4j is such API. It provides a logging API which supports levels.
+- The implementation can change. One can use Log4j, Log4j2, Logback and others.
+- Using Slf4j allows us to change logging implementation without having to change the code
+
+In this course we will be using Slf4j as logging API and Logback as logging implementation
