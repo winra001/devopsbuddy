@@ -1,0 +1,8 @@
+@{...} = hypherlink
+
+#{...} = i18n property
+
+${...} = Selects an object from the map within the context
+
+*{...} = Selects a property in that object
+*{...} workds in conjuction with ${...}
