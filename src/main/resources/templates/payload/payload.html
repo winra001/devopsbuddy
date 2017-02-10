@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- HTML page name and path :: Fragment name -->
+<!-- All locations are relative to the path: src/main/resources/templates -->
+<head th:replace="common/header :: common-header"></head>
+
+<body>
+	<div th:replace="common/navbar :: common-navbar"></div>
+	
+	<div class="container">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="jumbotron">
+						<div class="text-center">
+							<h1 th:text="#{payload.h1.text}"></h1>
+							<p class="lead" th:text="#{payload.p.lead}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Bootstrap core JavaScript -->
+	<div th:replace="common/header :: before-body-scripts"></div>
+</body>
+</html>
