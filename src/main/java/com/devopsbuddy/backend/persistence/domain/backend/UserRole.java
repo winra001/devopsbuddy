@@ -16,12 +16,12 @@ public class UserRole implements Serializable {
 	private static final long serialVersionUID = -1330863410121907772L;
 
 	@Id
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
 
 	@Id
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "role_id")
 	private Role role;
 
