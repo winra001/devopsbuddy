@@ -20,7 +20,7 @@ import com.devopsbuddy.backend.persistence.repositories.RoleRepository;
 import com.devopsbuddy.backend.persistence.repositories.UserRepository;
 import com.devopsbuddy.enums.PlansEnum;
 import com.devopsbuddy.enums.RolesEnum;
-import com.devopsbuddy.utils.UsersUtils;
+import com.devopsbuddy.utils.UserUtils;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -65,7 +65,7 @@ public class RepositoriesIntegrationTest {
 		planRepository.save(basicPlan);
 
 		// Create User instance and set the Plan saved entity as Foreign Key
-		User basicUser = UsersUtils.createBasicUser();
+		User basicUser = UserUtils.createBasicUser();
 		basicUser.setPlan(basicPlan);
 
 		// Sets the Set<UserRole> collection in the User entity.
