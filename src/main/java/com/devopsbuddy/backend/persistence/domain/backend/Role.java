@@ -22,6 +22,9 @@ public class Role implements Serializable {
 
 	private String name;
 
+	/**
+	 * If we want to delete "userRoles", application tries to delete "role" too.
+	 */
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<UserRole> userRoles = new HashSet<>();
 

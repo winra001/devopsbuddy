@@ -60,34 +60,7 @@ public class RepositoriesIntegrationTest {
 
 	@Test
 	public void createNewUser() {
-		// Create and save a Plan record
-		Plan basicPlan = createBasicPlan(PlansEnum.BASIC);
-		planRepository.save(basicPlan);
-
-		// Create User instance and set the Plan saved entity as Foreign Key
-		User basicUser = UserUtils.createBasicUser();
-		basicUser.setPlan(basicPlan);
-
-		// Sets the Set<UserRole> collection in the User entity.
-		// We add a UserRole object set with the User and Role objects we've just created
-		Role basicRole = createBasicRole(RolesEnum.BASIC);
-		Set<UserRole> userRoles = new HashSet<>();
-		UserRole userRole = new UserRole(basicUser, basicRole);
-		userRoles.add(userRole);
-
-		// IMPORTANT!!!
-		// To add values to a collection within a JPA Entity,
-		// always use the getter method first and all the objects afterwards.
-		basicUser.getUserRoles().addAll(userRoles);
-
-		// Saves the other side of the User to Roles relationship
-		// by persisting all Roles in the UserRoles collection
-		for (UserRole ur : userRoles) {
-			roleRepository.save(ur.getRole());
-		}
-
-		// Now that all relationship entities have been saved, it saves the User entity.
-		basicUser = userRepository.save(basicUser);
+		User basicUser = createUser();
 
 		User newlyCreatedUser = userRepository.findOne(basicUser.getId());
 
@@ -104,12 +77,47 @@ public class RepositoriesIntegrationTest {
 		}
 	}
 
+	@Test
+	public void testDeleteUser() throws Exception {
+		User basicUser = createUser();
+		userRepository.delete(basicUser.getId());
+	}
+
 	private Plan createBasicPlan(PlansEnum plansEnum) {
 		return new Plan(plansEnum);
 	}
 
 	private Role createBasicRole(RolesEnum rolesEnum) {
 		return new Role(rolesEnum);
+	}
+
+	private User createUser() {
+		// Create and save a Plan record
+		Plan basicPlan = createBasicPlan(PlansEnum.BASIC);
+		planRepository.save(basicPlan);
+
+		// Create User instance and set the Plan saved entity as Foreign Key
+		User basicUser = UserUtils.createBasicUser();
+		basicUser.setPlan(basicPlan);
+
+		Role basicRole = createBasicRole(RolesEnum.BASIC);
+		roleRepository.save(basicRole);
+
+		// Sets the Set<UserRole> collection in the User entity.
+		// We add a UserRole object set with the User and Role objects we've
+		// just created
+		Set<UserRole> userRoles = new HashSet<>();
+		UserRole userRole = new UserRole(basicUser, basicRole);
+		userRoles.add(userRole);
+
+		// IMPORTANT!!!
+		// To add values to a collection within a JPA Entity,
+		// always use the getter method first and all the objects afterwards.
+		basicUser.getUserRoles().addAll(userRoles);
+
+		basicUser = userRepository.save(basicUser);
+
+		return basicUser;
 	}
 
 }
