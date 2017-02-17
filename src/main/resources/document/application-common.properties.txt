@@ -1,0 +1,4 @@
+# Webmaster details
+webmaster.username=admin
+webmaster.password=password
+webmaster.email=
