@@ -32,8 +32,10 @@ public class DevopsbuddyApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// Comment out if you want to create a new user when application is started.
-		User user = UserUtils.createBasicUser();
+		String username = "proUser";
+		String email = "proUser@devopsbuddy.com";
+
+		User user = UserUtils.createBasicUser(username, email);
 		Set<UserRole> userRoles = new HashSet<>();
 		userRoles.add(new UserRole(user, new Role(RolesEnum.BASIC)));
 		LOG.debug("Creating user with username {}", user.getUsername());

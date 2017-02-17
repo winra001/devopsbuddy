@@ -5,7 +5,9 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,6 +37,9 @@ public class RepositoriesIntegrationTest {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Rule
+	public TestName testName = new TestName();
+
 	@Before
 	public void init() {
 		Assert.assertNotNull(planRepository);
@@ -43,7 +48,7 @@ public class RepositoriesIntegrationTest {
 	}
 
 	@Test
-	public void testCreateNewPlan() {
+	public void testCreateNewPlan() throws Exception {
 		Plan basicPlan = createBasicPlan(PlansEnum.BASIC);
 		planRepository.save(basicPlan);
 		Plan retrievedPlan = planRepository.findOne(PlansEnum.BASIC.getId());
@@ -51,7 +56,7 @@ public class RepositoriesIntegrationTest {
 	}
 
 	@Test
-	public void testCreateNewRole() {
+	public void testCreateNewRole() throws Exception {
 		Role basicRole = createBasicRole(RolesEnum.BASIC);
 		roleRepository.save(basicRole);
 		Role retrievedRole = roleRepository.findOne(RolesEnum.BASIC.getId());
@@ -59,8 +64,11 @@ public class RepositoriesIntegrationTest {
 	}
 
 	@Test
-	public void createNewUser() {
-		User basicUser = createUser();
+	public void createNewUser() throws Exception {
+		String username = testName.getMethodName();
+		String email = testName.getMethodName() + "@devopsbuddy.com";
+
+		User basicUser = createUser(username, email);
 
 		User newlyCreatedUser = userRepository.findOne(basicUser.getId());
 
@@ -79,7 +87,10 @@ public class RepositoriesIntegrationTest {
 
 	@Test
 	public void testDeleteUser() throws Exception {
-		User basicUser = createUser();
+		String username = testName.getMethodName();
+		String email = testName.getMethodName() + "@devopsbuddy.com";
+
+		User basicUser = createUser(username, email);
 		userRepository.delete(basicUser.getId());
 	}
 
@@ -91,13 +102,13 @@ public class RepositoriesIntegrationTest {
 		return new Role(rolesEnum);
 	}
 
-	private User createUser() {
+	private User createUser(String username, String email) {
 		// Create and save a Plan record
 		Plan basicPlan = createBasicPlan(PlansEnum.BASIC);
 		planRepository.save(basicPlan);
 
 		// Create User instance and set the Plan saved entity as Foreign Key
-		User basicUser = UserUtils.createBasicUser();
+		User basicUser = UserUtils.createBasicUser(username, email);
 		basicUser.setPlan(basicPlan);
 
 		Role basicRole = createBasicRole(RolesEnum.BASIC);
