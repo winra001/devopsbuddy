@@ -86,12 +86,25 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
+		<!-- Hibernate dependencies -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
 		<!-- Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+		    <groupId>uk.co.jemos.podam</groupId>
+		    <artifactId>podam</artifactId>
+		    <version>7.0.5.RELEASE</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
