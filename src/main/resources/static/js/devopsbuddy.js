@@ -231,7 +231,7 @@ function main() {
                     notEmpty: {
                         message: 'The CVV number is required'
                     },
-                    cardCode: {
+                    cvv: {
                         creditCardField: 'cardNumber',
                         message: 'The CVV number is not valid'
                     }
